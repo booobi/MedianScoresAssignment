@@ -1,0 +1,16 @@
+Optimization
+I've decided to use a helperArray to store all the items that I have iterated over (from the `scores` array).
+This approach allows me to maintain a sorted array at all times, which allows me to calculate the median correctly (without sorting the main `scores` array. This comes at a memory cost, which is hopefully justified by the bigger efficiency of finding the median.
+Inserting new score in the helper array on every iteration. 2 options.
+1) Array.push() + Array.sort() has n*logn complexity.
+2) Since I have decided to have a sorted helper array I can use binary search + Array.splice(), which gives us logn + n;
+Option 2 seems to be the better one and is the one that I have decided to go with.
+
+Explanation:
+After deciding to take option 2 from the Optimization section, the logic is very simple:
+Iterate over the `scores` input array and do the following for each element:
+1) Add the score to the helper array using the binary search + splice approach. (Always sorted)
+2) Calculate the median using medain formula:
+	a) if the helper array contains odd amount of scores => round up and add middle score to result array.
+	b) if the helper array contains even amount of scores => round up and add the result of the average of the middle 2 scores.
+The example test case is commented out at the end of the file.
